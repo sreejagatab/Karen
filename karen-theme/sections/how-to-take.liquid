@@ -1,0 +1,144 @@
+<section class="py-16 bg-amber-100 border-t-4 border-green-800">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center text-green-800 mb-12 font-cursive">
+      {{ section.settings.heading }}
+    </h2>
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-white p-8 rounded-lg border-2 border-green-800 shadow-lg">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
+            <div class="bg-amber-50 p-4 rounded-full w-48 h-48 flex items-center justify-center border-4 border-green-800">
+              {% if section.settings.image != blank %}
+                <img src="{{ section.settings.image | img_url: '200x200', crop: 'center' }}" alt="{{ section.settings.image.alt | escape }}" class="rounded-full">
+              {% else %}
+                <div class="w-full h-full bg-green-400 rounded-full flex items-center justify-center text-white">
+                  <p class="text-center">Add product image</p>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="md:w-2/3 md:pl-8">
+            <p class="text-xl mb-4">
+              {{ section.settings.description }}
+            </p>
+            <ul class="space-y-4">
+              {% for block in section.blocks %}
+                {% if block.type == 'benefit' %}
+                  <li class="flex items-start">
+                    <span class="flex-shrink-0 h-6 w-6 bg-green-800 rounded-full flex items-center justify-center text-white font-bold mr-3">✓</span>
+                    <span class="text-lg">{{ block.settings.text }}</span>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+            {% if section.settings.conclusion != blank %}
+              <p class="mt-6 text-lg font-bold">
+                {{ section.settings.conclusion }}
+              </p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      
+      {% if section.settings.show_testimonial %}
+        <div class="mt-12 text-center">
+          <p class="text-xl mb-6">
+            {{ section.settings.testimonial_text }}
+          </p>
+          <div class="inline-block bg-green-800 text-white text-xl font-bold py-3 px-6 rounded-lg transform rotate-1">
+            {{ section.settings.guarantee_text }}
+          </div>
+          <p class="mt-4 text-lg font-bold">
+            {{ section.settings.guarantee_subtext }}
+          </p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How To Take It",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "How To Take It"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Product Image"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "It's a vibrant green powder. Mix with water or your favourite COLD beverage."
+    },
+    {
+      "type": "text",
+      "id": "conclusion",
+      "label": "Conclusion",
+      "default": "If you are living life like you have a few blown circuit breakers.....Congratulations! You are in the right place."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_testimonial",
+      "label": "Show Testimonial Section",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_text",
+      "label": "Testimonial Text",
+      "default": "The 25 year Time Machine metaphor is not from us. This is the over arching comment from our customer community!!"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_text",
+      "label": "Guarantee Text",
+      "default": "More good news! It's free if you don't feel a transformation happening because we fully back it."
+    },
+    {
+      "type": "text",
+      "id": "guarantee_subtext",
+      "label": "Guarantee Subtext",
+      "default": "We can do this because only 0.81% take us up on this offer."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Benefit Text",
+          "default": "Each scoop/serving can feed over 90,000,000,000 of your cells"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How To Take It",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "benefit"
+        },
+        {
+          "type": "benefit"
+        },
+        {
+          "type": "benefit"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

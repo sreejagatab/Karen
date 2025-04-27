@@ -1,0 +1,128 @@
+<footer class="bg-green-800 text-white py-12 mt-auto">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row justify-between">
+      <div class="mb-8 md:mb-0">
+        <h3 class="text-3xl font-bold mb-4 font-cursive">Karen</h3>
+        <p class="max-w-md">
+          {{ section.settings.footer_text }}
+        </p>
+        
+        {% if section.settings.show_newsletter %}
+          <div class="mt-6">
+            <h4 class="font-bold text-xl mb-3">Join Our Newsletter</h4>
+            {% form 'customer', class: 'flex flex-col sm:flex-row' %}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <input type="email" name="contact[email]" placeholder="Your email" required class="px-4 py-2 rounded-l-full text-green-800 w-full sm:w-auto mb-2 sm:mb-0">
+              <button type="submit" class="bg-amber-300 text-green-800 font-bold px-4 py-2 rounded-r-full hover:bg-amber-200">Subscribe</button>
+            {% endform %}
+          </div>
+        {% endif %}
+      </div>
+      
+      <div class="grid grid-cols-2 gap-8 md:grid-cols-3">
+        {% if section.settings.footer_menu_1 != blank %}
+          <div>
+            <h4 class="font-bold text-xl mb-4">{{ section.settings.footer_menu_1_title }}</h4>
+            <ul class="space-y-2">
+              {% for link in section.settings.footer_menu_1.links %}
+                <li><a href="{{ link.url }}" class="hover:text-amber-200">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+        
+        {% if section.settings.footer_menu_2 != blank %}
+          <div>
+            <h4 class="font-bold text-xl mb-4">{{ section.settings.footer_menu_2_title }}</h4>
+            <ul class="space-y-2">
+              {% for link in section.settings.footer_menu_2.links %}
+                <li><a href="{{ link.url }}" class="hover:text-amber-200">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+        
+        {% if section.settings.footer_menu_3 != blank %}
+          <div>
+            <h4 class="font-bold text-xl mb-4">{{ section.settings.footer_menu_3_title }}</h4>
+            <ul class="space-y-2">
+              {% for link in section.settings.footer_menu_3.links %}
+                <li><a href="{{ link.url }}" class="hover:text-amber-200">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    
+    <div class="border-t border-green-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+      <p>© {{ 'now' | date: "%Y" }} {{ shop.name }}. All rights reserved.</p>
+      
+      {% if section.settings.footer_legal_menu != blank %}
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          {% for link in section.settings.footer_legal_menu.links %}
+            <a href="{{ link.url }}" class="text-sm hover:text-amber-200">{{ link.title }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "Mother Nature's Original Time Machine. Pure source nutrition directly to your cells."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Show Newsletter Signup",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "footer_menu_1_title",
+      "label": "Menu 1 Title",
+      "default": "Shop"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu_1",
+      "label": "Menu 1"
+    },
+    {
+      "type": "text",
+      "id": "footer_menu_2_title",
+      "label": "Menu 2 Title",
+      "default": "Learn"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu_2",
+      "label": "Menu 2"
+    },
+    {
+      "type": "text",
+      "id": "footer_menu_3_title",
+      "label": "Menu 3 Title",
+      "default": "Connect"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu_3",
+      "label": "Menu 3"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_legal_menu",
+      "label": "Legal Menu"
+    }
+  ]
+}
+{% endschema %}

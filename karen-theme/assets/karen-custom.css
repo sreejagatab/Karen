@@ -1,0 +1,242 @@
+/* Karen Phytoplankton Custom CSS */
+
+/* Retro Typography */
+.font-cursive {
+  font-family: 'Dancing Script', cursive;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5e6c4;
+  color: #194819;
+}
+
+/* Retro Elements */
+.retro-rotate {
+  transform: rotate(1deg);
+}
+
+.retro-rotate-reverse {
+  transform: rotate(-1deg);
+}
+
+.retro-shadow {
+  box-shadow: 4px 4px 0px rgba(25, 72, 25, 0.2);
+}
+
+.retro-border {
+  border: 2px solid #194819;
+  border-radius: 8px;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: #194819;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #266c26;
+  transform: scale(1.05);
+}
+
+.btn-secondary {
+  background-color: #e9c37a;
+  color: #194819;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: #e2b052;
+  transform: scale(1.05);
+}
+
+/* Product Badge */
+.product-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #e9c37a;
+  color: #194819;
+  border: 2px solid #194819;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transform: rotate(12deg);
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(1deg);
+  }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Quiz Section */
+.quiz-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid #e9c37a;
+  border-radius: 0.5rem;
+  background-color: #f5e6c4;
+  color: #194819;
+}
+
+.quiz-input:focus {
+  border-color: #194819;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(25, 72, 25, 0.2);
+}
+
+/* Testimonials */
+.testimonial-card {
+  background-color: #f5e6c4;
+  border: 2px solid #194819;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 4px 4px 0px rgba(25, 72, 25, 0.2);
+}
+
+.testimonial-card:nth-child(odd) {
+  transform: rotate(1deg);
+}
+
+.testimonial-card:nth-child(even) {
+  transform: rotate(-1deg);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  background-color: #f5e6c4;
+  border-bottom: 4px solid #194819;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+/* Subscription Selector */
+.subscription-option {
+  border: 2px solid #e9c37a;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.subscription-option:hover {
+  border-color: #194819;
+  transform: scale(1.02);
+}
+
+.subscription-option.selected {
+  border-color: #194819;
+  background-color: rgba(25, 72, 25, 0.05);
+}
+
+/* Cart Page */
+.cart-item {
+  border-bottom: 1px solid #e9c37a;
+  padding: 1rem 0;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  border: 2px solid #e9c37a;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.quantity-btn {
+  background-color: #f5e6c4;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.quantity-input {
+  width: 40px;
+  border: none;
+  text-align: center;
+  border-left: 1px solid #e9c37a;
+  border-right: 1px solid #e9c37a;
+}
+
+/* Blog */
+.blog-card {
+  background-color: white;
+  border: 2px solid #194819;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(25, 72, 25, 0.1);
+}
+
+/* FAQ */
+.faq-item {
+  border: 2px solid #e9c37a;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.faq-question {
+  background-color: #f5e6c4;
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-answer {
+  padding: 0 1rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px;
+  padding: 1rem;
+}

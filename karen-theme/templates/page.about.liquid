@@ -1,0 +1,59 @@
+<div class="bg-amber-50 py-12">
+  <div class="container mx-auto px-4">
+    <h1 class="text-5xl font-bold text-center text-green-800 mb-8 font-cursive">{{ page.title }}</h1>
+    
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-white p-8 rounded-lg border-2 border-green-800 shadow-lg mb-12">
+        <div class="prose max-w-none">
+          {{ page.content }}
+        </div>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8 mb-12">
+        <div class="bg-amber-100 p-6 rounded-lg border-2 border-green-800 transform rotate-1 shadow-lg">
+          <h2 class="text-3xl font-bold text-green-800 mb-4 font-cursive">Our Story</h2>
+          <p class="mb-4">Karen Phytoplankton was named in honor of a nurse from Maple Ridge, BC Canada who unnecessarily suffered and left us at 46. Our goal is to change this trajectory of constant health issues for the populace.</p>
+          <p>We discovered the incredible benefits of marine phytoplankton for human nutrition and perfected its growing process to create a supplement that delivers pure source nutrition directly to your cells.</p>
+        </div>
+        
+        <div class="bg-amber-100 p-6 rounded-lg border-2 border-green-800 transform -rotate-1 shadow-lg">
+          <h2 class="text-3xl font-bold text-green-800 mb-4 font-cursive">Our Mission</h2>
+          <p class="mb-4">We believe that proper nutrition is the foundation of good health. Our mission is to provide the highest quality marine phytoplankton supplement that helps people feel younger, more energetic, and healthier.</p>
+          <p>We're committed to sustainable practices, FDA-approved facilities, and maintaining the highest standards in our production process.</p>
+        </div>
+      </div>
+      
+      <div class="bg-white p-8 rounded-lg border-2 border-green-800 shadow-lg">
+        <h2 class="text-3xl font-bold text-green-800 mb-6 font-cursive text-center">Our Process</h2>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="w-24 h-24 bg-amber-200 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-green-800">
+              <span class="text-3xl font-bold text-green-800">1</span>
+            </div>
+            <h3 class="text-xl font-bold text-green-800 mb-2">Sourcing</h3>
+            <p>We use military-grade ocean water filtration to ensure the purest source of phytoplankton.</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-24 h-24 bg-amber-200 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-green-800">
+              <span class="text-3xl font-bold text-green-800">2</span>
+            </div>
+            <h3 class="text-xl font-bold text-green-800 mb-2">Production</h3>
+            <p>Our FDA-approved facility uses no pesticides or fertilizers in our growing process.</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-24 h-24 bg-amber-200 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-green-800">
+              <span class="text-3xl font-bold text-green-800">3</span>
+            </div>
+            <h3 class="text-xl font-bold text-green-800 mb-2">Quality Control</h3>
+            <p>Rigorous testing ensures each batch meets our high standards for purity and potency.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% section 'testimonials' %}

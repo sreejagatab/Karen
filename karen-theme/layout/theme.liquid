@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="{{ shop.locale }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f5e6c4">
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  <title>
+    {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            amber: {
+              50: '#f5e6c4',
+              100: '#f0d6a3',
+              200: '#e9c37a',
+              300: '#e2b052',
+              400: '#d99d29',
+              500: '#b37d1f',
+              600: '#8c5e15',
+              700: '#66400b',
+              800: '#3f2101',
+              900: '#180c00',
+            },
+            green: {
+              50: '#e6f5e6',
+              100: '#c4e8c4',
+              200: '#a3dba3',
+              300: '#82ce82',
+              400: '#61c161',
+              500: '#40b440',
+              600: '#339033',
+              700: '#266c26',
+              800: '#194819',
+              900: '#0c240c',
+            },
+          },
+          fontFamily: {
+            'cursive': ['Dancing Script', 'cursive'],
+            'sans': ['Poppins', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  {{ content_for_header }}
+
+  <style>
+    /* Custom CSS */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5e6c4;
+      color: #194819;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Dancing Script', cursive;
+      color: #194819;
+    }
+    
+    .retro-rotate {
+      transform: rotate(1deg);
+    }
+    
+    .retro-rotate-reverse {
+      transform: rotate(-1deg);
+    }
+    
+    .retro-shadow {
+      box-shadow: 4px 4px 0px rgba(25, 72, 25, 0.2);
+    }
+    
+    .retro-border {
+      border: 2px solid #194819;
+      border-radius: 8px;
+    }
+    
+    .btn-primary {
+      background-color: #194819;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    
+    .btn-primary:hover {
+      background-color: #266c26;
+      transform: scale(1.05);
+    }
+    
+    .btn-secondary {
+      background-color: #e9c37a;
+      color: #194819;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    
+    .btn-secondary:hover {
+      background-color: #e2b052;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  {% section 'header' %}
+  
+  <main role="main">
+    {{ content_for_layout }}
+  </main>
+  
+  {% section 'footer' %}
+</body>
+</html>

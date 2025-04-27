@@ -1,0 +1,128 @@
+<div class="bg-amber-50 py-12">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row">
+      <div class="md:w-1/2 mb-8 md:mb-0">
+        <div class="sticky top-24">
+          <div class="bg-white p-4 rounded-lg border-2 border-green-800 transform rotate-1 shadow-lg">
+            {% if product.featured_media != blank %}
+              <img src="{{ product.featured_media | img_url: '800x800', crop: 'center' }}" alt="{{ product.featured_media.alt | escape }}" class="w-full rounded-lg">
+            {% else %}
+              <div class="w-full h-96 bg-amber-100 rounded-lg flex items-center justify-center">
+                <p class="text-green-800">No image available</p>
+              </div>
+            {% endif %}
+            
+            {% if product.media.size > 1 %}
+              <div class="mt-4 grid grid-cols-4 gap-2">
+                {% for media in product.media %}
+                  <div class="border-2 {% if media.id == product.featured_media.id %}border-green-800{% else %}border-amber-200{% endif %} rounded-lg overflow-hidden">
+                    <img src="{{ media | img_url: '150x150', crop: 'center' }}" alt="{{ media.alt | escape }}" class="w-full h-auto product-thumbnail" data-media-id="{{ media.id }}">
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      
+      <div class="md:w-1/2 md:pl-8">
+        <h1 class="text-4xl font-bold text-green-800 mb-4 font-cursive">{{ product.title }}</h1>
+        
+        <div class="mb-6">
+          <p class="text-3xl font-bold text-green-800">{{ product.price | money }}</p>
+          {% if product.compare_at_price > product.price %}
+            <p class="text-lg">
+              <span class="line-through text-gray-500">{{ product.compare_at_price | money }}</span>
+              <span class="ml-2 bg-amber-300 text-green-800 px-2 py-1 rounded-full text-sm font-bold">Save {{ product.compare_at_price | minus: product.price | money }}</span>
+            </p>
+          {% endif %}
+        </div>
+        
+        <div class="bg-white p-6 rounded-lg border-2 border-green-800 mb-8">
+          <div class="prose max-w-none text-lg mb-6">
+            {{ product.description }}
+          </div>
+          
+          {% form 'product', product %}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            
+            {% if product.has_only_default_variant == false %}
+              {% for option in product.options_with_values %}
+                <div class="mb-4">
+                  <label for="Option{{ option.position }}" class="block text-lg font-bold text-green-800 mb-2">{{ option.name }}</label>
+                  <select id="Option{{ option.position }}" name="options[{{ option.name }}]" class="w-full p-3 border-2 border-amber-200 rounded-lg focus:border-green-800 focus:ring focus:ring-green-200 focus:ring-opacity-50">
+                    {% for value in option.values %}
+                      <option value="{{ value }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
+                        {{ value }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              {% endfor %}
+            {% endif %}
+            
+            <div class="mb-6">
+              <label for="Quantity" class="block text-lg font-bold text-green-800 mb-2">Quantity</label>
+              <input type="number" id="Quantity" name="quantity" value="1" min="1" class="w-full p-3 border-2 border-amber-200 rounded-lg focus:border-green-800 focus:ring focus:ring-green-200 focus:ring-opacity-50">
+            </div>
+            
+            <button type="submit" name="add" class="w-full py-4 bg-green-800 text-white rounded-full font-bold text-lg hover:bg-green-700 transform transition hover:scale-105 {% unless product.available %}opacity-50 cursor-not-allowed{% endunless %}" {% unless product.available %}disabled{% endunless %}>
+              {% if product.available %}
+                Add to Cart
+              {% else %}
+                Sold Out
+              {% endif %}
+            </button>
+          {% endform %}
+        </div>
+        
+        <div class="bg-amber-100 p-6 rounded-lg border-2 border-green-800 transform -rotate-1 shadow-lg">
+          <h3 class="text-2xl font-bold text-green-800 mb-4 font-cursive">Why Choose Karen Phytoplankton?</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <span class="flex-shrink-0 h-6 w-6 bg-green-800 rounded-full flex items-center justify-center text-white font-bold mr-3">✓</span>
+              <span>Pure source nutrition directly to your cells</span>
+            </li>
+            <li class="flex items-start">
+              <span class="flex-shrink-0 h-6 w-6 bg-green-800 rounded-full flex items-center justify-center text-white font-bold mr-3">✓</span>
+              <span>No digestion required</span>
+            </li>
+            <li class="flex items-start">
+              <span class="flex-shrink-0 h-6 w-6 bg-green-800 rounded-full flex items-center justify-center text-white font-bold mr-3">✓</span>
+              <span>FDA approved facility</span>
+            </li>
+            <li class="flex items-start">
+              <span class="flex-shrink-0 h-6 w-6 bg-green-800 rounded-full flex items-center justify-center text-white font-bold mr-3">✓</span>
+              <span>Risk-free guarantee</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const thumbnails = document.querySelectorAll('.product-thumbnail');
+    const featuredImage = document.querySelector('.featured-image');
+    
+    thumbnails.forEach(thumbnail => {
+      thumbnail.addEventListener('click', function() {
+        const mediaId = this.getAttribute('data-media-id');
+        // Update featured image (this would need to be implemented with Shopify's JavaScript API)
+        
+        // Update active thumbnail border
+        thumbnails.forEach(thumb => {
+          thumb.parentElement.classList.remove('border-green-800');
+          thumb.parentElement.classList.add('border-amber-200');
+        });
+        this.parentElement.classList.remove('border-amber-200');
+        this.parentElement.classList.add('border-green-800');
+      });
+    });
+  });
+</script>
+
+{% section 'how-to-take' %}
+{% section 'testimonials' %}

@@ -1,0 +1,133 @@
+<div class="bg-amber-50 py-12">
+  <div class="container mx-auto px-4">
+    <h1 class="text-5xl font-bold text-center text-green-800 mb-4 font-cursive">{{ collection.title }}</h1>
+    
+    {% if collection.description != blank %}
+      <div class="max-w-3xl mx-auto text-center mb-8">
+        <div class="prose mx-auto">
+          {{ collection.description }}
+        </div>
+      </div>
+    {% endif %}
+    
+    <div class="max-w-6xl mx-auto">
+      {% paginate collection.products by 12 %}
+        <div class="mb-8">
+          <div class="bg-white p-4 rounded-lg border-2 border-green-800 shadow-lg flex flex-col sm:flex-row justify-between items-center">
+            <div class="mb-4 sm:mb-0">
+              <span class="font-bold text-green-800">{{ collection.products_count }} products</span>
+            </div>
+            
+            <div class="flex items-center">
+              <label for="SortBy" class="mr-2 text-green-800">Sort by:</label>
+              <select id="SortBy" class="border-2 border-amber-200 rounded-lg p-2 focus:border-green-800 focus:ring focus:ring-green-200 focus:ring-opacity-50">
+                <option value="manual">Featured</option>
+                <option value="price-ascending">Price: Low to High</option>
+                <option value="price-descending">Price: High to Low</option>
+                <option value="title-ascending">A-Z</option>
+                <option value="title-descending">Z-A</option>
+                <option value="created-ascending">Oldest to Newest</option>
+                <option value="created-descending">Newest to Oldest</option>
+                <option value="best-selling">Best Selling</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        {% if collection.products.size > 0 %}
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
+            {% for product in collection.products %}
+              <div class="bg-white rounded-lg border-2 border-green-800 shadow-lg overflow-hidden transform {% cycle 'rotate-1', '-rotate-1', 'rotate-1', '-rotate-1' %}">
+                <a href="{{ product.url }}" class="block">
+                  <div class="h-64 overflow-hidden">
+                    {% if product.featured_media %}
+                      <img src="{{ product.featured_media | img_url: '400x400', crop: 'center' }}" alt="{{ product.featured_media.alt | escape }}" class="w-full h-full object-cover">
+                    {% else %}
+                      <div class="w-full h-full bg-amber-100 flex items-center justify-center">
+                        <span class="text-green-800">No image available</span>
+                      </div>
+                    {% endif %}
+                  </div>
+                </a>
+                
+                <div class="p-4">
+                  <h2 class="text-xl font-bold text-green-800 mb-2">
+                    <a href="{{ product.url }}" class="hover:text-amber-500">{{ product.title }}</a>
+                  </h2>
+                  
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <span class="font-bold text-green-800">{{ product.price | money }}</span>
+                      {% if product.compare_at_price > product.price %}
+                        <span class="ml-2 line-through text-gray-500 text-sm">{{ product.compare_at_price | money }}</span>
+                      {% endif %}
+                    </div>
+                    
+                    {% if product.available %}
+                      <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">In stock</span>
+                    {% else %}
+                      <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">Sold out</span>
+                    {% endif %}
+                  </div>
+                  
+                  <div class="mt-4">
+                    <a href="{{ product.url }}" class="block w-full py-2 bg-amber-300 text-green-800 rounded-full font-bold text-center hover:bg-amber-400 transform transition hover:scale-105">
+                      View Product
+                    </a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          
+          {% if paginate.pages > 1 %}
+            <div class="flex justify-center items-center space-x-4">
+              {% if paginate.previous %}
+                <a href="{{ paginate.previous.url }}" class="px-4 py-2 bg-green-800 text-white rounded-full hover:bg-green-700">
+                  Previous
+                </a>
+              {% endif %}
+              
+              <span class="text-green-800">Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+              
+              {% if paginate.next %}
+                <a href="{{ paginate.next.url }}" class="px-4 py-2 bg-green-800 text-white rounded-full hover:bg-green-700">
+                  Next
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% else %}
+          <div class="bg-white p-8 rounded-lg border-2 border-green-800 shadow-lg text-center">
+            <p class="text-lg mb-6">No products found in this collection.</p>
+            <a href="/collections/all" class="inline-block px-6 py-3 bg-green-800 text-white rounded-full font-bold hover:bg-green-700 transform transition hover:scale-105">
+              View All Products
+            </a>
+          </div>
+        {% endif %}
+      {% endpaginate %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sortBySelect = document.getElementById('SortBy');
+    
+    if (sortBySelect) {
+      // Set initial value based on current sort
+      const urlParams = new URLSearchParams(window.location.search);
+      const sortValue = urlParams.get('sort_by') || 'manual';
+      sortBySelect.value = sortValue;
+      
+      // Handle sort change
+      sortBySelect.addEventListener('change', function() {
+        const url = new URL(window.location.href);
+        url.searchParams.set('sort_by', this.value);
+        window.location.href = url.href;
+      });
+    }
+  });
+</script>
+
+{% section 'testimonials' %}

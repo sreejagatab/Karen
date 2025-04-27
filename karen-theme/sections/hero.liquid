@@ -1,0 +1,115 @@
+<section class="bg-amber-200 py-12 border-b-4 border-green-800">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-8 md:mb-0">
+        <h2 class="text-5xl font-bold text-green-800 mb-4 font-cursive">
+          {{ section.settings.heading }}
+        </h2>
+        <div class="bg-white p-6 rounded-lg shadow-md border-2 border-green-800 transform rotate-1 retro-shadow">
+          <h3 class="text-2xl font-bold text-green-800 mb-4">{{ section.settings.subheading }}</h3>
+          <p class="text-lg mb-6">
+            {{ section.settings.description }}
+          </p>
+          <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+            {% if section.settings.button_1_text != blank %}
+              <a href="{{ section.settings.button_1_link }}" class="px-6 py-3 bg-green-800 text-white rounded-full hover:bg-green-700 transform transition hover:scale-105 text-center">
+                {{ section.settings.button_1_text }}
+              </a>
+            {% endif %}
+            
+            {% if section.settings.button_2_text != blank %}
+              <a href="{{ section.settings.button_2_link }}" class="px-6 py-3 bg-amber-400 text-green-800 rounded-full hover:bg-amber-300 transform transition hover:scale-105 text-center">
+                {{ section.settings.button_2_text }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="md:w-1/2 flex justify-center">
+        <div class="relative">
+          <div class="w-64 h-64 bg-white rounded-full shadow-lg p-6 transform rotate-6 border-4 border-green-800">
+            <div class="w-full h-full bg-green-500 rounded-full flex items-center justify-center overflow-hidden">
+              {% if section.settings.image != blank %}
+                <img src="{{ section.settings.image | img_url: '400x400', crop: 'center' }}" alt="{{ section.settings.image.alt | escape }}" class="object-cover">
+              {% else %}
+                <div class="flex items-center justify-center h-full w-full bg-green-400 text-white text-center p-4">
+                  <p>Add an image</p>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+          {% if section.settings.badge_text != blank %}
+            <div class="absolute -bottom-4 -right-4 bg-amber-300 text-green-800 rounded-full py-2 px-4 font-bold transform rotate-12 border-2 border-green-800">
+              {{ section.settings.badge_text }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Want To Feel 25 Years Younger?"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "The Time Machine Discovery"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Travel back in time with Karen Phytoplankton - Mother Nature's original superfood that delivers pure source nutrition directly to your cells, no digestion required!"
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Button 1 Text",
+      "default": "Try Risk Free"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Button 2 Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "Feel the Difference!"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

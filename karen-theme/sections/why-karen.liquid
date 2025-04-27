@@ -1,0 +1,61 @@
+<section class="py-16 bg-amber-50 border-t-4 border-green-800">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center text-green-800 mb-6 font-cursive">
+      {{ section.settings.heading }}
+    </h2>
+    <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg border-2 border-green-800 shadow-lg">
+      {% for block in section.blocks %}
+        {% if block.type == 'paragraph' %}
+          <p class="text-lg {% unless forloop.last %}mb-4{% endunless %}">
+            {{ block.settings.text }}
+          </p>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why Named Karen",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why is it named Karen?"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Paragraph Text",
+          "default": "Karen is the original Phytoplankton brand. Originally named in honor of a nurse from Maple Ridge, BC Canada who unnecessarily suffered and left us at 46."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Named Karen",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "paragraph"
+        },
+        {
+          "type": "paragraph"
+        },
+        {
+          "type": "paragraph"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

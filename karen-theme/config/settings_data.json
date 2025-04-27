@@ -1,0 +1,33 @@
+{
+  "current": {
+    "color_primary": "#194819",
+    "color_secondary": "#e9c37a",
+    "color_background": "#f5e6c4",
+    "color_text": "#194819",
+    "font_heading": "dancing_script_n4",
+    "font_body": "poppins_n4",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo": "",
+          "menu": "main-menu"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "footer_text": "Mother Nature's Original Time Machine. Pure source nutrition directly to your cells.",
+          "show_newsletter": true,
+          "footer_menu_1_title": "Shop",
+          "footer_menu_1": "footer",
+          "footer_menu_2_title": "Learn",
+          "footer_menu_2": "footer",
+          "footer_menu_3_title": "Connect",
+          "footer_menu_3": "footer",
+          "footer_legal_menu": "footer-legal"
+        }
+      }
+    }
+  }
+}

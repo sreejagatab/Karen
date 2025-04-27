@@ -1,0 +1,93 @@
+<div class="bg-amber-50 py-12">
+  <div class="container mx-auto px-4">
+    <h1 class="text-5xl font-bold text-center text-green-800 mb-8 font-cursive">{{ page.title }}</h1>
+    
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-white p-8 rounded-lg border-2 border-green-800 shadow-lg mb-8">
+        <div class="prose max-w-none">
+          {{ page.content }}
+        </div>
+      </div>
+      
+      <div class="space-y-4">
+        <div class="bg-amber-100 p-6 rounded-lg border-2 border-green-800 shadow-md">
+          <button class="faq-toggle w-full flex justify-between items-center text-left">
+            <h3 class="text-xl font-bold text-green-800">What is Karen Phytoplankton?</h3>
+            <svg class="w-6 h-6 text-green-800 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden mt-4">
+            <p>Karen Phytoplankton is a single-cell plant that's 1/3 the size of a blood cell. It contains pure source nutrition that absorbs directly into your cells without digestion. It's grown in our FDA-approved facility using military-grade ocean water filtration, with no pesticides or fertilizers.</p>
+          </div>
+        </div>
+        
+        <div class="bg-amber-100 p-6 rounded-lg border-2 border-green-800 shadow-md">
+          <button class="faq-toggle w-full flex justify-between items-center text-left">
+            <h3 class="text-xl font-bold text-green-800">How do I take Karen Phytoplankton?</h3>
+            <svg class="w-6 h-6 text-green-800 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden mt-4">
+            <p>Karen Phytoplankton comes as a vibrant green powder. Simply mix it with water or your favorite COLD beverage. Each scoop/serving can feed over 90 billion of your cells, providing direct nourishment for your mitochondria.</p>
+          </div>
+        </div>
+        
+        <div class="bg-amber-100 p-6 rounded-lg border-2 border-green-800 shadow-md">
+          <button class="faq-toggle w-full flex justify-between items-center text-left">
+            <h3 class="text-xl font-bold text-green-800">What are the benefits of taking Karen Phytoplankton?</h3>
+            <svg class="w-6 h-6 text-green-800 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden mt-4">
+            <p>Many customers report feeling 25 years younger after taking Karen Phytoplankton. Benefits include increased energy, better sleep, improved digestion, and overall wellness. The supplement provides pure source nutrition directly to your cells, which can help address foundational nutritional deficiencies.</p>
+          </div>
+        </div>
+        
+        <div class="bg-amber-100 p-6 rounded-lg border-2 border-green-800 shadow-md">
+          <button class="faq-toggle w-full flex justify-between items-center text-left">
+            <h3 class="text-xl font-bold text-green-800">Is there a guarantee?</h3>
+            <svg class="w-6 h-6 text-green-800 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden mt-4">
+            <p>Yes! We offer a risk-free guarantee. If you don't feel a transformation happening, it's free. We can offer this because only 0.81% of customers take us up on this offer, which speaks to the effectiveness of our product.</p>
+          </div>
+        </div>
+        
+        <div class="bg-amber-100 p-6 rounded-lg border-2 border-green-800 shadow-md">
+          <button class="faq-toggle w-full flex justify-between items-center text-left">
+            <h3 class="text-xl font-bold text-green-800">Why is it named Karen?</h3>
+            <svg class="w-6 h-6 text-green-800 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden mt-4">
+            <p>Karen is the original Phytoplankton brand. It was named in honor of a nurse from Maple Ridge, BC Canada who unnecessarily suffered and left us at 46. Our goal is to change this trajectory of constant health issues for the populace. Yes, the meme came out later, but 25 years ago we all knew a Karen who was cool.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqToggles = document.querySelectorAll('.faq-toggle');
+    
+    faqToggles.forEach(toggle => {
+      toggle.addEventListener('click', function() {
+        const content = this.nextElementSibling;
+        const icon = this.querySelector('svg');
+        
+        content.classList.toggle('hidden');
+        icon.classList.toggle('rotate-180');
+      });
+    });
+  });
+</script>
+
+{% section 'how-to-take' %}
